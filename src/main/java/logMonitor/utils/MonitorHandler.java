@@ -16,8 +16,8 @@ import logMonitor.domain.*;
 
 /**
  * Describe: 日志监控的核心类，包括了日志监控系统所有的核心处理。
- * Author:   maoxiangyi
- * Domain:   www.itcast.cn
+ * Author:   liulei18
+ * Domain:   www.lenovo.com.cn
  * Data:     2015/11/11.
  */
 public class MonitorHandler {

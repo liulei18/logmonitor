@@ -2,8 +2,8 @@ package logMonitor.domain;
 
 /**
  * Describe: 请补充类描述
- * Author:   maoxiangyi
- * Domain:   www.itcast.cn
+ * Author:   liulei18
+ * Domain:   www.lenovo.com.cn
  * Data:     2015/11/11.
  */
 public class Rule {

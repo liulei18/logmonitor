@@ -15,8 +15,8 @@ import java.util.Map;
 
 /**
  * Describe: 过滤规则信息
- * Author:   maoxiangyi
- * Domain:   www.itcast.cn
+ * Author:   liulei18
+ * Domain:   www.lenovo.com.cn
  * Data:     2015/11/11.
  */
 //BaseRichBolt 需要手动调ack方法，BaseBasicBolt由storm框架自动调ack方法

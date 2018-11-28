@@ -19,8 +19,8 @@ import storm.kafka.ZkHosts;
 
 /**
  * Describe: 日志监控系统驱动类
- * Author:   maoxiangyi
- * Domain:   www.itcast.cn
+ * Author:   liulei18
+ * Domain:   www.lenovo.com.cn
  * Data:     2015/11/10.
  */
 public class LogMonitorTopologyMain {
@@ -30,7 +30,7 @@ public class LogMonitorTopologyMain {
         // 使用TopologyBuilder进行构建驱动类
         TopologyBuilder builder = new TopologyBuilder();
 //         设置kafka的zookeeper集群
-//        BrokerHosts hosts = new ZkHosts("zk01:2181,zk02:2181,zk03:2181");
+//        BrokerHosts hosts = new ZkHosts("mini2:2181,mini3:2181,mini4:2181");
 ////        // 初始化配置信息
 //        SpoutConfig spoutConfig = new SpoutConfig(hosts, "logmonitor", "/aaa", "log_monitor");
         // 在topology中设置spout

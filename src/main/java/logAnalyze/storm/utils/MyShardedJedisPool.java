@@ -31,7 +31,7 @@ public class MyShardedJedisPool {
         config.setTestOnReturn(true);
         //创建四个redis服务实例，并封装在list中
         List<JedisShardInfo> list = new LinkedList<JedisShardInfo>();
-        list.add(new JedisShardInfo("127.0.0.1", 6379));
+        list.add(new JedisShardInfo("mini1", 6379));
         //创建具有分片功能的的Jedis连接池
         shardedJedisPool = new ShardedJedisPool(config, list);
     }

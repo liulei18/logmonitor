@@ -45,7 +45,7 @@ public class LogMonitorDao {
     }
 
     /**
-     * 插叙所有用户的信息
+     * 查询所有用户的信息
      *
      * @return
      */

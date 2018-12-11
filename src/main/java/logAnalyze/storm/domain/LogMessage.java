@@ -14,7 +14,7 @@ public class LogMessage implements Serializable {
     private String hrefTag;//标签标识
     private String hrefContent;//标签对应的标识，主要针对a标签之后的内容
     private String referrerUrl;//来源网址
-    private String requestUrl;//来源网址
+    private String requestUrl;//请求网址
     private String clickTime;//点击时间
     private String appName;//浏览器类型
     private String appVersion;//浏览器版本

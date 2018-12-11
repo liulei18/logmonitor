@@ -9,6 +9,10 @@ import backtype.storm.utils.Utils;
 import logAnalyze.storm.bolt.MessageFilterBolt;
 import logAnalyze.storm.bolt.ProcessMessage;
 import logAnalyze.storm.spout.RandomSpout;
+import storm.kafka.BrokerHosts;
+import storm.kafka.KafkaSpout;
+import storm.kafka.SpoutConfig;
+import storm.kafka.ZkHosts;
 
 /**
  * Describe: 请补充类描述
@@ -19,6 +23,12 @@ import logAnalyze.storm.spout.RandomSpout;
 public class LogAnalyzeTopologyMain {
     public static void main(String[] args) throws  Exception{
         TopologyBuilder builder = new TopologyBuilder();
+        // 设置kafka的zookeeper集群
+        BrokerHosts hosts = new ZkHosts("mini2:2181,mini3:2181,mini4:2181");
+        // 初始化配置信息
+        SpoutConfig spoutConfig = new SpoutConfig(hosts, "logAnalyze", "/logAnalyze", "topo");
+        // 在topology中设置spout
+        //builder.setSpout("kafka-spout",new KafkaSpout(spoutConfig));
         builder.setSpout("kafka-spout", new RandomSpout(), 2);
         builder.setBolt("MessageFilter-bolt",new MessageFilterBolt(),3).shuffleGrouping("kafka-spout");
         builder.setBolt("ProcessMessage-bolt",new ProcessMessage(),2).fieldsGrouping("MessageFilter-bolt", new Fields("type"));

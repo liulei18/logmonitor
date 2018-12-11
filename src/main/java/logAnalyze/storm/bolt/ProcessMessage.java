@@ -16,6 +16,7 @@ import logAnalyze.storm.utils.LogAnalyzeHandler;
 public class ProcessMessage extends BaseBasicBolt {
     @Override
     public void execute(Tuple input, BasicOutputCollector collector) {
+        //message:{"type":1,"referrerUrl":"http://www.itcast.cn/","requestUrl":"http://www.itcast.cn/product?id\u003d1002","userName":"maoxiangyi"}
         LogMessage logMessage = (LogMessage) input.getValueByField("message");
         LogAnalyzeHandler.process(logMessage);
     }

@@ -58,6 +58,7 @@ public class RandomSpout extends BaseRichSpout {
         }
     }
 
+
     @Override
     public void declareOutputFields(final OutputFieldsDeclarer declarer) {
         declarer.declare(new Fields("paymentInfo"));

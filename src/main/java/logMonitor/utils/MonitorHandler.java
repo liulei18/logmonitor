@@ -94,7 +94,7 @@ public class MonitorHandler {
             load();
         }
         //从规则模型中获取当前appid配置的规则
-        System.out.println(message.getAppId());
+        System.out.println("trigger get appid is "+message.getAppId());
         List<Rule> keywordByAppIdList = ruleMap.get(message.getAppId());
         for (Rule rule : keywordByAppIdList) {
             //如果日志中包含过滤过的关键词，即为匹配成功

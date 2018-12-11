@@ -5,9 +5,9 @@ package logMonitor.mail;
  * <p/>
  * <p/>
  * ----------------------------
- * 姓名：毛祥溢
- * 邮箱：sendmail2mao@gmail.com
- * 网站：www.maoxiangyi.cn
+ * 姓名：liulei18
+ * 邮箱：liulei18@lenovo.com
+ * 网站：www.lenovo.com.cn
  */
 public class MailCenterConstant {
     public final static String PROTOCOL = "smtp";

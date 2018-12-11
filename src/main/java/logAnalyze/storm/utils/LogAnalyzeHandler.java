@@ -49,13 +49,17 @@ public class LogAnalyzeHandler {
             loadDataModel();
         }
         // kafka来的日志：2,req,ref,xxx,xxx,xxx,yy
+        // message:{"type":1,"referrerUrl":"http://www.itcast.cn/","requestUrl":"http://www.itcast.cn/product?id\u003d1002","userName":"maoxiangyi"}
+        // type: 1:浏览日志、2:点击日志、3:搜索日志、4:购买日志 获取该日志类型对应的所有job
         List<LogAnalyzeJob> analyzeJobList = jobMap.get(logMessage.getType()+"");
         for (LogAnalyzeJob logAnalyzeJob : analyzeJobList) {
             boolean isMatch = false; //是否匹配
+            //根据jobid获取job详情
             List<LogAnalyzeJobDetail> logAnalyzeJobDetailList = jobDetail.get(logAnalyzeJob.getJobId());
             for (LogAnalyzeJobDetail jobDetail : logAnalyzeJobDetailList) {
                 //jobDetail,指定和kakfa输入过来的数据中的 requesturl比较
                 // 获取kafka输入过来的数据的requesturl的值
+                //jobDetail.getField()：hrefTag referrerUrl requestUrl
                 String fieldValueInLog = logMessage.getCompareFieldValue(jobDetail.getField());
                 //1:包含 2:等于 3：正则
                 if (jobDetail.getCompare() == 1 && fieldValueInLog.contains(jobDetail.getValue())) {
@@ -144,14 +148,14 @@ public class LogAnalyzeHandler {
             }
             jobDetails.add(logAnalyzeJobDetail);
         }
-        System.out.println("jobDetailMap:  "+map);
+        System.out.println("【jobDetailMap:  】"+map);
         return map;
     }
 
     private static Map<String, List<LogAnalyzeJob>> loadJobMap() {
         Map<String, List<LogAnalyzeJob>> map = new HashMap<String, List<LogAnalyzeJob>>();
         List<LogAnalyzeJob> logAnalyzeJobList = new LogAnalyzeDao().loadJobList();
-        System.out.println(logAnalyzeJobList);
+        System.out.println("【logAnalyzeJobList 】 "+logAnalyzeJobList);
         for (LogAnalyzeJob logAnalyzeJob : logAnalyzeJobList) {
             int jobType = logAnalyzeJob.getJobType();
             if (isValidType(jobType)) {
@@ -163,7 +167,7 @@ public class LogAnalyzeHandler {
                 jobList.add(logAnalyzeJob);
             }
         }
-        System.out.println("job:  " + map);
+        System.out.println("【job:  】" + map);
         return map;
     }
 
@@ -191,7 +195,7 @@ public class LogAnalyzeHandler {
      * 配合reloadDataModel模块一起使用。
      * 主要实现原理如下：
      * 1，获取分钟的数据值，当分钟数据是10的倍数，就会触发reloadDataModel方法，简称reload时间。
-     * 2，reloadDataModel方式是线程安全的，在当前worker中只有一个现成能够操作。
+     * 2，reloadDataModel方式是线程安全的，在当前worker中只有一个线程能够操作。
      * 3，为了保证当前线程操作完毕之后，其他线程不再重复操作，设置了一个标识符reloaded。
      * 在非reload时间段时，reloaded一直被置为true；
      * 在reload时间段时，第一个线程进入reloadDataModel后，加载完毕之后会将reloaded置为false。

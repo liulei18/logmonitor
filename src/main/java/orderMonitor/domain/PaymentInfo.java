@@ -18,7 +18,7 @@ public class PaymentInfo implements Serializable {
     private Date paymentTime;//支付时间
     private String shopId;//商铺编号
     private String shopName;//商铺名称
-    private String shopMobile;//商品电话
+    private String shopMobile;//店铺电话
     private String ip;//下单用户的ip
     private String user;//下订单的用户
     private String userMobile;//用户的手机号码

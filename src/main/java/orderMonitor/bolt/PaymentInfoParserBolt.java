@@ -27,6 +27,7 @@ public class PaymentInfoParserBolt extends BaseBasicBolt {
         }
         List<String> triggerList = OrderMonitorHandler.match(paymentInfo);
 //        List<String> triggerList = new ArrayList<>();
+        // triggerList返回的是触发的ruleId
         triggerList.add("12");
         triggerList.add("13");
         if (triggerList.size() > 0) {

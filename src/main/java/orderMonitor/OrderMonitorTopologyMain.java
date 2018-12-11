@@ -44,11 +44,11 @@ public class OrderMonitorTopologyMain {
         TopologyBuilder topologyBuilder = new TopologyBuilder();
         topologyBuilder.setSpout("kafka-spout", new RandomSpout(), 2);
 
-        topologyBuilder.setBolt("paymentInfoParser-bolt", new PaymentInfoParserBolt(), 3);
+        topologyBuilder.setBolt("paymentInfoParser-bolt", new PaymentInfoParserBolt(), 3).shuffleGrouping("kafka-spout");;
 
         topologyBuilder.setBolt("SaveInfo2DB-bolt", new SaveInfo2DB(), 2)
-                .fieldsGrouping("paymentInfoParser-bolt", new Fields("orderId"))
-                .fieldsGrouping("kafka-spout", new Fields("paymentInfo"));
+                .fieldsGrouping("paymentInfoParser-bolt", new Fields("orderId"));
+                //.fieldsGrouping("kafka-spout", new Fields("paymentInfo"));
 
         //启动topology的配置信息
         Config topologConf = new Config();

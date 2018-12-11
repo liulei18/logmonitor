@@ -63,7 +63,7 @@ public class ConditionMatch {
             }
             return orderProductNumByPrice(paymentInfo, Integer.parseInt(arrValue[0]), Integer.parseInt(arrValue[1]));
         } else if (RuleField.ORDER_PROCUDT_NUM_BY_CATEGORY.equals(field)) {
-            //价差当前订单中商品价格大于阈值，并且商品类别在高价值分类中的商品数量是否满足业务指定的数量
+            //检查当前订单中商品价格大于阈值，并且商品类别在高价值分类中的商品数量是否满足业务指定的数量
             String value = condition.getValue();
             String[] arrValue = value.split("\\|");
             if (arrValue.length != 2) {
